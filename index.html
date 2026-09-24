@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Happy Birthday, Bhavani</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500&family=Noto+Sans+Telugu:wght@500&family=Noto+Sans+Devanagari:wght@500&family=Noto+Sans+Oriya:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#141416;--panel:#1e1e22;--line:#3a3630;--gold:#d4af6a;--gold2:#f0d9a0;--text:#ece7dd;--muted:#a59f93;
+color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:Inter,'Noto Sans Telugu','Noto Sans Devanagari','Noto Sans Oriya',system-ui,sans-serif;font-weight:300;color:var(--text);background:radial-gradient(ellipse at 50% -10%,#2b2723 0%,var(--bg) 60%) fixed;background-color:var(--bg);line-height:1.7;overflow-x:hidden}
+section{max-width:780px;margin:0 auto;padding:84px 22px;text-align:center}
+.eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+h2{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(1.7rem,5vw,2.4rem);margin:10px 0 6px}
+.rule{width:56px;height:1px;background:var(--gold);margin:18px auto}
+.sub{color:var(--muted);margin-bottom:34px;font-size:.98rem}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+.btn{font:400 .85rem Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:linear-gradient(135deg,var(--gold2),var(--gold));border:0;padding:14px 30px;border-radius:2px;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px #d4af6a33}
+.btn.o{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.btn.o:hover{background:#d4af6a14}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+#music{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;z-index:40;width:42px;height:42px;padding:0;border-radius:50%;background:#1e1e22cc;border:1px solid var(--line);color:var(--gold);font-size:1rem;backdrop-filter:blur(6px)}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+h1{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-style:italic;font-size:clamp(1.8rem,6vw,3rem);color:var(--text);margin-top:26px}
+h1 b{display:block;font-style:normal;font-weight:700;font-size:clamp(3.4rem,15vw,7.5rem);line-height:1.05;letter-spacing:.02em;background:linear-gradient(120deg,var(--gold) 20%,var(--gold2) 50%,var(--gold) 80%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:sh 7s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.lead{max-width:460px;color:var(--muted);margin:6px auto 30px}
+#pill{display:inline-block;border:1px solid var(--line);padding:6px 20px;border-radius:999px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2);margin-bottom:34px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:28px 22px;position:relative}
+.panel:before{content:"";position:absolute;inset:6px;border:1px solid #d4af6a26;pointer-events:none}
+.cake{width:min(260px,72%);display:block;margin:0 auto 22px}
+.flame{transform-origin:50% 100%;animation:fl .5s ease-in-out infinite alternate;transition:opacity .5s}
+.out .flame{opacity:0;animation:none}
+@keyframes fl{from{transform:scale(1) rotate(-3deg)}to{transform:scale(1.12,1.22) rotate(3deg)}}
+#meter{height:3px;background:var(--line);max-width:240px;margin:20px auto 0}#meter i{display:block;height:100%;width:0;background:var(--gold)}
+#msg{min-height:1.8em;margin-top:16px;color:var(--gold2);font-family:'Playfair Display',serif;font-style:italic}
+.sc{position:relative;width:min(340px,100%);height:180px;margin:0 auto}
+.sc .under{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;background:var(--panel);border:1px solid var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--gold2)}
+.sc canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;transition:opacity .9s}
+.sc canvas.gone{opacity:0;pointer-events:none}
+.tabs{display:inline-flex;border:1px solid var(--line);border-radius:2px;margin-bottom:22px;overflow:hidden;flex-wrap:wrap;justify-content:center}
+.tabs button{background:none;border:0;color:var(--muted);font:400 .95rem Inter,'Noto Sans Telugu','Noto Sans Devanagari','Noto Sans Oriya',sans-serif;padding:11px 22px;cursor:pointer}
+.tabs button.on{background:var(--gold);color:var(--bg)}
+#wish{min-height:150px;display:flex;flex-direction:column;justify-content:center;gap:10px;font-size:clamp(1.1rem,3.8vw,1.35rem);font-weight:500;color:var(--gold2)}
+#wish small{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.tl{position:relative;text-align:left;max-width:520px;margin:0 auto;padding-left:34px}
+.tl:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:linear-gradient(var(--gold),#d4af6a22)}
+.tl div{position:relative;margin-bottom:34px}
+.tl div:before{content:"";position:absolute;left:-34px;top:7px;width:15px;height:15px;border-radius:50%;background:var(--bg);border:1px solid var(--gold);box-shadow:0 0 0 4px var(--bg)}
+.tl div:after{content:"";position:absolute;left:-30px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.tl h3{font-family:'Playfair Display',serif;font-weight:500;font-size:1.2rem;color:var(--gold2)}
+.tl small{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.tl p{color:var(--muted);font-size:.95rem}
+#cardc{width:min(340px,100%);display:block;margin:0 auto 26px;border:1px solid var(--line);box-shadow:0 20px 50px #0008}
+footer{padding:40px 22px 80px;text-align:center;color:var(--muted)}
+footer .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;color:var(--gold2);margin-top:6px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s,transform 1s}.rv.show{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<button class="btn o" id="music" aria-label="Music">♪</button>
+
+<section id="hero">
+  <div class="eyebrow">1st October</div>
+  <h1>Happy Birthday<b>Bhavani</b></h1>
+  <div class="rule"></div>
+  <p class="lead">Wishing you a day as wonderful as the year that lies ahead.</p>
+  <span id="pill">Counting down…</span>
+  <button class="btn" id="party">Celebrate</button>
+</section>
+
+<section class="rv">
+  <div class="eyebrow">A moment for you</div>
+  <h2>Make a Wish</h2><div class="rule"></div>
+  <p class="sub">Think of something you hope for, then blow out the candles. Use your microphone, or simply tap.</p>
+  <svg class="cake" id="cake" viewBox="0 0 300 250" fill="none" stroke="#d4af6a" stroke-width="2.5" aria-label="Birthday cake">
+    <ellipse cx="150" cy="236" rx="128" ry="8" stroke="none" fill="#0006"/>
+    <rect x="40" y="170" width="220" height="62" rx="6" fill="#26241f"/>
+    <path d="M40 186q18 16 36 0t36 0 36 0 36 0 36 0 40 0" />
+    <rect x="72" y="112" width="156" height="58" rx="6" fill="#2b2822"/>
+    <path d="M72 128q16 14 32 0t32 0 32 0 32 0 28 0"/>
+    <g fill="#d4af6a" stroke="none"><circle cx="80" cy="212" r="3"/><circle cx="115" cy="216" r="3"/><circle cx="150" cy="212" r="3"/><circle cx="185" cy="216" r="3"/><circle cx="220" cy="212" r="3"/></g>
+    <g fill="#141416"><rect x="106" y="74" width="8" height="38"/><rect x="146" y="68" width="8" height="44"/><rect x="186" y="74" width="8" height="38"/></g>
+    <g stroke="none" fill="#f0d9a0"><g class="flame"><ellipse cx="110" cy="62" rx="5" ry="10"/></g><g class="flame" style="animation-delay:.15s"><ellipse cx="150" cy="56" rx="5" ry="10"/></g><g class="flame" style="animation-delay:.3s"><ellipse cx="190" cy="62" rx="5" ry="10"/></g></g>
+  </svg>
+  <div class="row"><button class="btn" id="mic">Blow with mic</button><button class="btn o" id="tap">Tap to blow</button></div>
+  <div id="meter"><i></i></div><div id="msg"></div>
+</section>
+
+<section class="rv">
+  <div class="eyebrow">A little surprise</div>
+  <h2>Scratch to Reveal</h2><div class="rule"></div>
+  <p class="sub">Use your finger or mouse to uncover something for you.</p>
+  <div class="sc"><div class="under" id="prize"></div><canvas id="scr" width="340" height="180"></canvas></div>
+</section>
+
+<section class="rv">
+  <div class="eyebrow">In your language</div>
+  <h2>Warm Wishes</h2><div class="rule"></div>
+  <div class="tabs" id="tabs"><button data-l="te">తెలుగు</button><button data-l="hi">हिन्दी</button><button data-l="or">ଓଡ଼ିଆ</button><button data-l="en">English</button></div>
+  <div class="panel" id="wish"></div>
+</section>
+
+<section class="rv">
+  <div class="eyebrow">Looking forward</div>
+  <h2>The Year Ahead</h2><div class="rule"></div>
+  <p class="sub">A few wishes for the months to come.</p>
+  <div class="tl">
+    <div><small>Right now</small><h3>Settling in with ease</h3><p>May every day at work feel a little more familiar, and every colleague a little more like a friend.</p></div>
+    <div><small>Three months</small><h3>New skills, new confidence</h3><p>May you learn quickly, ask freely and see your ideas welcomed by the team.</p></div>
+    <div><small>Six months</small><h3>Meaningful achievements</h3><p>May your hard work be noticed, appreciated and rewarded.</p></div>
+    <div><small>One year on</small><h3>Proud of how far you've come</h3><p>May you look back with a smile, and forward with even bigger dreams.</p></div>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="eyebrow">Keep it</div>
+  <h2>Your Greeting Card</h2><div class="rule"></div>
+  <p class="sub">A card you can save on your phone or share with family and friends.</p>
+  <canvas id="cardc" width="1080" height="1350"></canvas>
+  <button class="btn" id="dl">Download card</button>
+</section>
+
+<footer>
+  <div class="rule"></div>
+  <p>With warm wishes for a wonderful year,</p>
+  <p class="sig" id="sig">Kaibalya</p>
+</footer>
+
+<script>
+const MONTH=9,DAY=1;
+const FROM=new URLSearchParams(location.search).get("from")||"Kaibalya";
+const PRIZE="A coffee or a treat is on me. Redeem it anytime this month.";
+const $=s=>document.querySelector(s);
+$("#sig").textContent=FROM;$("#prize").textContent=PRIZE+" — "+FROM;
+const GOLD=["#d4af6a","#f0d9a0","#b8944f","#ece7dd"];
+
+// countdown pill
+(function(){const n=new Date(),y=n.getFullYear(),t=new Date(y,MONTH,DAY),e=new Date(y,MONTH,DAY+1),p=$("#pill");
+  if(/[?&]party/.test(location.search)||(n>=t&&n<e)){p.textContent="Today is your day";setTimeout(()=>burst(innerWidth/2,innerHeight/3,140),700)}
+  else if(n<t){const d=Math.ceil((t-n)/864e5);p.textContent=d+(d===1?" day":" days")+" to go"}
+  else p.textContent="Hope it was a wonderful day"})();
+
+// confetti (gold, actions only)
+const cv=$("#fx"),cx=cv.getContext("2d");let P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener("resize",rs);
+function burst(x,y,n=90){for(let i=0;i<n;i++){const a=Math.random()*6.28,s=3+Math.random()*8;P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,r:3+Math.random()*4,c:GOLD[i%4],a:Math.random()*6,va:Math.random()*.4-.2,l:120+Math.random()*60})}}
+(function loop(){cx.clearRect(0,0,cv.width,cv.height);P=P.filter(p=>p.l>0);
+  P.forEach(p=>{p.vy+=.16;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;p.l--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.globalAlpha=Math.min(1,p.l/40);cx.fillStyle=p.c;cx.fillRect(-p.r,-p.r/2,p.r*2,p.r);cx.restore()});
+  requestAnimationFrame(loop)})();
+$("#party").onclick=e=>{burst(e.clientX,e.clientY,110);setTimeout(()=>burst(innerWidth*.25,innerHeight*.4,60),200);setTimeout(()=>burst(innerWidth*.75,innerHeight*.4,60),350)};
+
+// cake: tap or mic
+const cake=$("#cake"),msg=$("#msg");let stream,mctx,raf;
+function stopMic(){cancelAnimationFrame(raf);stream&&stream.getTracks().forEach(t=>t.stop());mctx&&mctx.close();stream=mctx=null;$("#meter i").style.width=0;$("#mic").textContent="Blow with mic"}
+function out(){if(cake.classList.contains("out"))return;cake.classList.add("out");msg.textContent="May every wish you made come true, Bhavani.";const r=cake.getBoundingClientRect();burst(r.left+r.width/2,r.top+40,120);stopMic()}
+function relight(){cake.classList.remove("out");msg.textContent=""}
+$("#tap").onclick=()=>cake.classList.contains("out")?relight():out();
+$("#mic").onclick=async function(){
+  if(stream){stopMic();return}relight();
+  try{stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    mctx=new (window.AudioContext||window.webkitAudioContext)();const an=mctx.createAnalyser();an.fftSize=512;mctx.createMediaStreamSource(stream).connect(an);
+    const d=new Uint8Array(an.fftSize);let acc=0;this.textContent="Stop listening";msg.textContent="Blow gently towards your microphone…";
+    (function f(){an.getByteTimeDomainData(d);let s=0;for(const v of d){const x=(v-128)/128;s+=x*x}const lv=Math.sqrt(s/d.length);
+      $("#meter i").style.width=Math.min(100,lv*400)+"%";acc=lv>.12?acc+1:Math.max(0,acc-1);if(acc>18){out();return}raf=requestAnimationFrame(f)})();
+  }catch(e){stream=null;msg.textContent="Microphone unavailable. Please use the tap button instead."}
+};
+
+// scratch card (gold foil)
+const sc=$("#scr"),s2=sc.getContext("2d");let down=false,cnt=0,done=false;
+(function(){const g=s2.createLinearGradient(0,0,340,180);g.addColorStop(0,"#b8944f");g.addColorStop(.5,"#f0d9a0");g.addColorStop(1,"#c9a45e");s2.fillStyle=g;s2.fillRect(0,0,340,180);
+  s2.fillStyle="#4a3b1c";s2.font="500 15px Inter,sans-serif";s2.textAlign="center";s2.fillText("S C R A T C H   H E R E",170,94)})();
+function scratch(e){if(!down||done)return;const r=sc.getBoundingClientRect(),x=(e.clientX-r.left)*340/r.width,y=(e.clientY-r.top)*180/r.height;
+  s2.globalCompositeOperation="destination-out";s2.beginPath();s2.arc(x,y,20,0,6.28);s2.fill();
+  if(++cnt%6==0){const dt=s2.getImageData(0,0,340,180).data;let c=0;for(let i=3;i<dt.length;i+=64)if(dt[i]===0)c++;
+    if(c/(dt.length/64)>.5){done=true;sc.classList.add("gone");burst(innerWidth/2,sc.getBoundingClientRect().top+90,110)}}}
+sc.addEventListener("pointerdown",e=>{down=true;sc.setPointerCapture(e.pointerId);scratch(e)});
+sc.addEventListener("pointermove",scratch);sc.addEventListener("pointerup",()=>down=false);sc.addEventListener("pointercancel",()=>down=false);
+
+// languages
+const L={te:["పుట్టినరోజు శుభాకాంక్షలు భవానీ! మీ జీవితం ఆనందం, ఆరోగ్యం మరియు విజయంతో నిండిపోవాలని కోరుకుంటున్నాను.","Telugu"],
+ hi:["जन्मदिन की हार्दिक शुभकामनाएँ भवानी! आपका हर दिन खुशियों, सेहत और सफलता से भरा रहे।","Hindi"],
+ or:["ଜନ୍ମଦିନର ଶୁଭେଚ୍ଛା ଭବାନୀ! ଆପଣଙ୍କ ଜୀବନ ଖୁସି, ସୁସ୍ଥତା ଓ ସଫଳତାରେ ଭରି ରହୁ।","Odia"],
+ en:["Happy Birthday, Bhavani! Wishing you a year full of joy, good health and success.","English"]};
+function lang(k){const w=$("#wish");w.lang=k;w.innerHTML=L[k][0]+"<small>"+L[k][1]+"</small>";document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.l===k))}
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>lang(b.dataset.l));lang("te");
+
+// greeting card
+function wrap(x,t,cx0,y,w,lh){let l="";for(const wd of t.split(" ")){const s=l+wd+" ";if(x.measureText(s).width>w&&l){x.fillText(l.trim(),cx0,y);y+=lh;l=wd+" "}else l=s}x.fillText(l.trim(),cx0,y)}
+function card(){const c=$("#cardc"),x=c.getContext("2d"),W=1080,H=1350;
+  const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,"#2b2723");g.addColorStop(1,"#121214");x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.strokeStyle="#d4af6a";x.lineWidth=3;x.strokeRect(50,50,W-100,H-100);x.lineWidth=1;x.strokeRect(70,70,W-140,H-140);
+  x.textAlign="center";x.fillStyle="#d4af6a";x.font="500 30px Inter,sans-serif";if("letterSpacing" in x)x.letterSpacing="10px";x.fillText("1  OCTOBER",W/2,230);if("letterSpacing" in x)x.letterSpacing="0px";
+  x.fillStyle="#ece7dd";x.font="italic 500 84px 'Playfair Display',Georgia,serif";x.fillText("Happy Birthday",W/2,420);
+  const gg=x.createLinearGradient(200,0,880,0);gg.addColorStop(0,"#b8944f");gg.addColorStop(.5,"#f0d9a0");gg.addColorStop(1,"#b8944f");
+  x.fillStyle=gg;x.font="700 210px 'Playfair Display',Georgia,serif";x.fillText("Bhavani",W/2,650);
+  x.fillStyle="#d4af6a";x.fillRect(W/2-50,730,100,2);
+  x.fillStyle="#ece7dd";x.font="italic 500 46px 'Playfair Display',Georgia,serif";wrap(x,"Wishing you a year full of joy, good health and success.",W/2,850,760,70);
+  x.fillStyle="#a59f93";x.font="400 32px Inter,sans-serif";x.fillText("With warm wishes,",W/2,1090);
+  x.fillStyle="#f0d9a0";x.font="italic 500 74px 'Playfair Display',Georgia,serif";x.fillText(FROM,W/2,1180)}
+card();if(document.fonts)document.fonts.ready.then(card);
+$("#dl").onclick=()=>$("#cardc").toBlob(async b=>{const fn="Happy-Birthday-Bhavani.png";let d=null;
+  try{d=window.claude&&await claude.use("downloads")}catch(e){}
+  if(d){try{await d.save({filename:fn,data:b})}catch(e){}}
+  else{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=fn;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
+  burst(innerWidth/2,innerHeight/2,60)});
+
+// music (soft Happy Birthday)
+let ac,on=false,tm;const N={G4:392,A4:440,B4:494,C5:523,D5:587,E5:659,F5:698,G5:784};
+const song="G4 .75,G4 .25,A4 1,G4 1,C5 1,B4 2,G4 .75,G4 .25,A4 1,G4 1,D5 1,C5 2,G4 .75,G4 .25,G5 1,E5 1,C5 1,B4 1,A4 1,F5 .75,F5 .25,E5 1,C5 1,D5 1,C5 2".split(",").map(s=>s.trim().split(" "));
+function play(){ac=ac||new (window.AudioContext||window.webkitAudioContext)();let t=ac.currentTime+.05;
+  song.forEach(([n,d])=>{const o=ac.createOscillator(),g=ac.createGain(),l=d*.5;o.type="sine";o.frequency.value=N[n];g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.16,t+.04);g.gain.exponentialRampToValueAtTime(.001,t+l);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+l+.05);t+=l});
+  tm=setTimeout(()=>on&&play(),(t-ac.currentTime+1.5)*1000)}
+$("#music").onclick=function(){on=!on;this.textContent=on?"✕":"♪";if(on)play();else{clearTimeout(tm);ac&&ac.close();ac=null}};
+
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("show")),{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
