@@ -28,6 +28,14 @@ h2{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(
 h1{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-style:italic;font-size:clamp(1.8rem,6vw,3rem);color:var(--text);margin-top:26px}
 h1 b{display:block;font-style:normal;font-weight:700;font-size:clamp(3.4rem,15vw,7.5rem);line-height:1.05;letter-spacing:.02em;background:linear-gradient(120deg,var(--gold) 20%,var(--gold2) 50%,var(--gold) 80%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:sh 7s linear infinite}
 @keyframes sh{to{background-position:-200% 0}}
+.marquee{position:relative;display:inline-block;padding:.35em .2em .5em;margin-top:.1em}
+.bulbs{position:absolute;inset:-2px -14px -14px;pointer-events:none}
+.bulbs i{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--gold2);box-shadow:0 0 4px 1px #f0d9a0aa;animation:blk 1.1s steps(1) infinite}
+.bulbs i:nth-child(odd){animation-delay:.15s}
+.bulbs i:nth-child(3n){animation-delay:.3s}
+.bulbs i:nth-child(4n){animation-delay:.45s}
+@keyframes blk{0%,49%{opacity:1;box-shadow:0 0 7px 2px #f0d9a0cc}50%,100%{opacity:.25;box-shadow:0 0 2px 0 #d4af6a55}}
+@media (prefers-reduced-motion:reduce){.bulbs i{animation:none;opacity:1}}
 .lead{max-width:460px;color:var(--muted);margin:6px auto 30px}
 #pill{display:inline-block;border:1px solid var(--line);padding:6px 20px;border-radius:999px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2);margin-bottom:34px}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:28px 22px;position:relative}
@@ -68,7 +76,7 @@ footer .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7
 
 <section id="hero">
   <div class="eyebrow">1st October</div>
-  <h1>Happy Birthday<b>Bhavani</b></h1>
+  <h1>Happy Birthday<span class="marquee"><b>Bhavani</b><span class="bulbs" id="bulbs"></span></span></h1>
   <div class="rule"></div>
   <p class="lead">Wishing you a day as wonderful as the year that lies ahead.</p>
   <span id="pill">Counting down…</span>
@@ -122,7 +130,7 @@ footer .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7
 <section class="rv">
   <div class="eyebrow">Keep it</div>
   <h2>Your Greeting Card</h2><div class="rule"></div>
-  <p class="sub">A card you can save on your phone or keep as a memoir.</p>
+  <p class="sub">A card you can save on your phone or share with family and friends.</p>
   <canvas id="cardc" width="1080" height="1350"></canvas>
   <button class="btn" id="dl">Download card</button>
 </section>
@@ -140,6 +148,15 @@ const PRIZE="A coffee or a treat is on me. Redeem it anytime this month.";
 const $=s=>document.querySelector(s);
 $("#sig").textContent=FROM;$("#prize").textContent=PRIZE+" — "+FROM;
 const GOLD=["#d4af6a","#f0d9a0","#b8944f","#ece7dd"];
+
+// marquee bulbs around the name
+function placeBulbs(){const wrap=document.querySelector(".marquee"),box=$("#bulbs");if(!wrap||!box)return;
+  const w=wrap.offsetWidth,h=wrap.offsetHeight;box.innerHTML="";const gap=26;
+  const perim=2*(w+h);let n=Math.max(16,Math.round(perim/gap));
+  for(let i=0;i<n;i++){const t=i/n,d=t*perim;let x,y;
+    if(d<w){x=d;y=0}else if(d<w+h){x=w;y=d-w}else if(d<2*w+h){x=w-(d-w-h);y=h}else{x=0;y=h-(d-2*w-h)}
+    const b=document.createElement("i");b.style.left=x+"px";b.style.top=y+"px";box.appendChild(b)}}
+placeBulbs();addEventListener("resize",placeBulbs);if(document.fonts)document.fonts.ready.then(placeBulbs);
 
 // countdown pill
 (function(){const n=new Date(),y=n.getFullYear(),t=new Date(y,MONTH,DAY),e=new Date(y,MONTH,DAY+1),p=$("#pill");
