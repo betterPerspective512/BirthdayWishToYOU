@@ -143,7 +143,7 @@ footer .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7
 <script>
 const MONTH=9,DAY=1;
 const FROM=new URLSearchParams(location.search).get("from")||"Kaibalya";
-const PRIZE="Congrats on scratching the card. Now we will have to connect soon 😊.";
+const PRIZE="Congrats on scratching the card. Now we'll have to connect soon 😊.";
 const $=s=>document.querySelector(s);
 $("#sig").textContent=FROM;$("#prize").textContent=PRIZE+" — "+FROM;
 const GOLD=["#d4af6a","#f0d9a0","#b8944f","#ece7dd"];
@@ -227,7 +227,7 @@ function wrap(x,t,cx0,y,w,lh){let l="";for(const wd of t.split(" ")){const s=l+w
 function card(){const c=$("#cardc"),x=c.getContext("2d"),W=1080,H=1350;
   const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,"#2b2723");g.addColorStop(1,"#121214");x.fillStyle=g;x.fillRect(0,0,W,H);
   x.strokeStyle="#d4af6a";x.lineWidth=3;x.strokeRect(50,50,W-100,H-100);x.lineWidth=1;x.strokeRect(70,70,W-140,H-140);
-  x.textAlign="center";x.fillStyle="#d4af6a";x.font="500 30px Inter,sans-serif";if("letterSpacing" in x)x.letterSpacing="10px";x.fillText("1st  OCTOBER",W/2,230);if("letterSpacing" in x)x.letterSpacing="0px";
+  x.textAlign="center";x.fillStyle="#d4af6a";x.font="500 30px Inter,sans-serif";if("letterSpacing" in x)x.letterSpacing="10px";x.fillText("1ST  OCTOBER",W/2,230);if("letterSpacing" in x)x.letterSpacing="0px";
   x.fillStyle="#ece7dd";x.font="italic 500 84px 'Playfair Display',Georgia,serif";x.fillText("Happy Birthday",W/2,420);
   const gg=x.createLinearGradient(200,0,880,0);gg.addColorStop(0,"#b8944f");gg.addColorStop(.5,"#f0d9a0");gg.addColorStop(1,"#b8944f");
   x.fillStyle=gg;x.font="700 210px 'Playfair Display',Georgia,serif";x.fillText("Bhavani",W/2,650);
