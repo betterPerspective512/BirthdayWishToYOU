@@ -104,12 +104,11 @@ footer .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7
 <section class="rv">
   <div class="eyebrow">A little surprise</div>
   <h2>Scratch to Reveal</h2><div class="rule"></div>
-  <p class="sub">Use your finger or mouse to uncover something for you.</p>
   <div class="sc"><div class="under" id="prize"></div><canvas id="scr" width="340" height="180"></canvas></div>
 </section>
 
 <section class="rv">
-  <div class="eyebrow">In your language</div>
+  <div class="eyebrow">In various languages</div>
   <h2>Warm Wishes</h2><div class="rule"></div>
   <div class="tabs" id="tabs"><button data-l="te">తెలుగు</button><button data-l="hi">हिन्दी</button><button data-l="or">ଓଡ଼ିଆ</button><button data-l="en">English</button></div>
   <div class="panel" id="wish"></div>
@@ -130,7 +129,7 @@ footer .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7
 <section class="rv">
   <div class="eyebrow">Keep it</div>
   <h2>Your Greeting Card</h2><div class="rule"></div>
-  <p class="sub">A card you can save on your phone or share with family and friends.</p>
+  <p class="sub">A card for you so you can save it on your phone !!</p>
   <canvas id="cardc" width="1080" height="1350"></canvas>
   <button class="btn" id="dl">Download card</button>
 </section>
@@ -144,7 +143,7 @@ footer .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7
 <script>
 const MONTH=9,DAY=1;
 const FROM=new URLSearchParams(location.search).get("from")||"Kaibalya";
-const PRIZE="A coffee or a treat is on me. Redeem it anytime this month.";
+const PRIZE="Congrats on scratching the card. Now we will have to connect soon 😊.";
 const $=s=>document.querySelector(s);
 $("#sig").textContent=FROM;$("#prize").textContent=PRIZE+" — "+FROM;
 const GOLD=["#d4af6a","#f0d9a0","#b8944f","#ece7dd"];
@@ -228,7 +227,7 @@ function wrap(x,t,cx0,y,w,lh){let l="";for(const wd of t.split(" ")){const s=l+w
 function card(){const c=$("#cardc"),x=c.getContext("2d"),W=1080,H=1350;
   const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,"#2b2723");g.addColorStop(1,"#121214");x.fillStyle=g;x.fillRect(0,0,W,H);
   x.strokeStyle="#d4af6a";x.lineWidth=3;x.strokeRect(50,50,W-100,H-100);x.lineWidth=1;x.strokeRect(70,70,W-140,H-140);
-  x.textAlign="center";x.fillStyle="#d4af6a";x.font="500 30px Inter,sans-serif";if("letterSpacing" in x)x.letterSpacing="10px";x.fillText("1  OCTOBER",W/2,230);if("letterSpacing" in x)x.letterSpacing="0px";
+  x.textAlign="center";x.fillStyle="#d4af6a";x.font="500 30px Inter,sans-serif";if("letterSpacing" in x)x.letterSpacing="10px";x.fillText("1st  OCTOBER",W/2,230);if("letterSpacing" in x)x.letterSpacing="0px";
   x.fillStyle="#ece7dd";x.font="italic 500 84px 'Playfair Display',Georgia,serif";x.fillText("Happy Birthday",W/2,420);
   const gg=x.createLinearGradient(200,0,880,0);gg.addColorStop(0,"#b8944f");gg.addColorStop(.5,"#f0d9a0");gg.addColorStop(1,"#b8944f");
   x.fillStyle=gg;x.font="700 210px 'Playfair Display',Georgia,serif";x.fillText("Bhavani",W/2,650);
