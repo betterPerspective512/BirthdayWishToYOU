@@ -177,14 +177,19 @@ $("#party").onclick=e=>{burst(e.clientX,e.clientY,110);setTimeout(()=>burst(inne
 const cake=$("#cake"),msg=$("#msg");let stream,mctx,raf;
 function stopMic(){cancelAnimationFrame(raf);stream&&stream.getTracks().forEach(t=>t.stop());mctx&&mctx.close();stream=mctx=null;$("#meter i").style.width=0;$("#mic").textContent="Blow with mic"}
 function speakBirthday(){if(!("speechSynthesis" in window))return;
+  speechSynthesis.cancel(); // clear any queued/lingering utterances first
   const u=new SpeechSynthesisUtterance("Happy Birthday, Bhavani! Wishing you a fantastic, joyful year ahead!");
   u.pitch=1.25;u.rate=1.02;u.volume=1;
-  const pick=()=>{const vs=speechSynthesis.getVoices();const v=vs.find(v=>/en/i.test(v.lang)&&/female|zira|samantha|victoria|google us english/i.test(v.name))||vs.find(v=>/en/i.test(v.lang));if(v)u.voice=v;speechSynthesis.speak(u)};
+  let spoken=false;
+  const pick=()=>{if(spoken)return;const vs=speechSynthesis.getVoices();if(!vs.length)return;
+    spoken=true;speechSynthesis.onvoiceschanged=null;
+    const v=vs.find(v=>/en/i.test(v.lang)&&/female|zira|samantha|victoria|google us english/i.test(v.name))||vs.find(v=>/en/i.test(v.lang));
+    if(v)u.voice=v;speechSynthesis.speak(u)};
   if(speechSynthesis.getVoices().length)pick();else speechSynthesis.onvoiceschanged=pick}
 function celebrateFinale(){
   stopMusic();wantOn=false;clearTimeout(tm);
   const mb=$("#music");mb.disabled=true;mb.style.opacity=.35;mb.title="Music finished for the celebration";
-  ac=ac||new (window.AudioContext||window.webkitAudioContext)();firecracker();
+  ensureAudio();firecracker();
   setTimeout(speakBirthday,1000)}
 function out(){if(cake.classList.contains("out"))return;cake.classList.add("out");msg.textContent="May every wish you made come true, Bhavani.";const r=cake.getBoundingClientRect();burst(r.left+r.width/2,r.top+40,120);stopMic();celebrateFinale()}
 function relight(){cake.classList.remove("out");msg.textContent=""}
@@ -192,7 +197,7 @@ $("#tap").onclick=()=>cake.classList.contains("out")?relight():out();
 $("#mic").onclick=async function(){
   if(stream){stopMic();return}relight();
   try{stream=await navigator.mediaDevices.getUserMedia({audio:true});
-    mctx=new (window.AudioContext||window.webkitAudioContext)();const an=mctx.createAnalyser();an.fftSize=512;mctx.createMediaStreamSource(stream).connect(an);
+    mctx=new (window.AudioContext||window.webkitAudioContext)();if(mctx.state==="suspended")mctx.resume();const an=mctx.createAnalyser();an.fftSize=512;mctx.createMediaStreamSource(stream).connect(an);
     const d=new Uint8Array(an.fftSize);let acc=0;this.textContent="Stop listening";msg.textContent="Blow gently towards your microphone…";
     (function f(){an.getByteTimeDomainData(d);let s=0;for(const v of d){const x=(v-128)/128;s+=x*x}const lv=Math.sqrt(s/d.length);
       $("#meter i").style.width=Math.min(100,lv*400)+"%";acc=lv>.12?acc+1:Math.max(0,acc-1);if(acc>18){out();return}raf=requestAnimationFrame(f)})();
@@ -240,22 +245,23 @@ $("#dl").onclick=()=>$("#cardc").toBlob(async b=>{const fn="Happy-Birthday-Bhava
 
 // music — layered melody + soft bass, warmer tone
 let ac,on=false,tm,wantOn=true;
+function ensureAudio(){ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==="suspended")ac.resume();return ac}
 const N={C4:261.6,D4:293.7,E4:329.6,F4:349.2,G4:392,A4:440,B4:493.9,C5:523.3,D5:587.3,E5:659.3,F5:698.5,G5:784};
 // melody with an underlying bass note per phrase: [note,beats,bass]
 const song=[["G4",.75,"C4"],["G4",.25,null],["A4",1,null],["G4",1,"F4"],["C5",1,null],["B4",2,"C4"],
  ["G4",.75,"C4"],["G4",.25,null],["A4",1,null],["G4",1,"G4"],["D5",1,null],["C5",2,"C4"],
  ["G4",.75,"C4"],["G4",.25,null],["G5",1,null],["E5",1,"F4"],["C5",1,null],["B4",1,"G4"],["A4",1,null],
  ["F5",.75,"F4"],["F5",.25,null],["E5",1,null],["C5",1,"G4"],["D5",1,null],["C5",2,"C4"]];
-function tone(freq,t,len,vol,type){const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=freq;
+function tone(freq,t,len,vol,type){const a=ac;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=freq;
   g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.05);g.gain.exponentialRampToValueAtTime(.0008,t+len);
-  o.connect(g).connect(ac.destination);o.start(t);o.stop(t+len+.05)}
-function play(){ac=ac||new (window.AudioContext||window.webkitAudioContext)();let t=ac.currentTime+.05;
+  o.connect(g).connect(a.destination);o.start(t);o.stop(t+len+.05)}
+function play(){const a=ensureAudio();let t=a.currentTime+.05;
   song.forEach(([n,d,bass])=>{const len=d*.52;
     tone(N[n],t,len,.15,"triangle"); // main melody, warmer than sine
     tone(N[n]*2,t,len,.03,"sine"); // gentle octave shimmer
     if(bass)tone(N[bass]/2,t,d*.5+.12,.09,"sine"); // soft bass under phrase
     t+=len});
-  tm=setTimeout(()=>on&&play(),(t-ac.currentTime+1.4)*1000)}
+  tm=setTimeout(()=>on&&play(),(t-a.currentTime+1.4)*1000)}
 function startMusic(){if(on)return;on=true;$("#music").textContent="✕";play()}
 function stopMusic(){on=false;$("#music").textContent="♪";clearTimeout(tm);ac&&ac.close();ac=null}
 $("#music").onclick=function(){if(on)stopMusic();else startMusic()};
@@ -264,7 +270,7 @@ function firstTouch(){if(wantOn){wantOn=false;startMusic()}window.removeEventLis
 addEventListener("pointerdown",firstTouch,{once:true});addEventListener("keydown",firstTouch,{once:true});
 
 // firecracker / celebration sound
-function firecracker(){const a=ac||new (window.AudioContext||window.webkitAudioContext)();ac=ac||a;
+function firecracker(){const a=ensureAudio();
   const pops=6+Math.floor(Math.random()*3);
   for(let i=0;i<pops;i++){const t=a.currentTime+.05+i*(.09+Math.random()*.08);
     const dur=.14,buf=a.createBuffer(1,a.sampleRate*dur,a.sampleRate),d=buf.getChannelData(0);
